@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>CBSE & Karnataka Board (KSEAB) Quiz — Class 7 to 10</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --warn: #d97706;
+      --warn-bg: #fffbeb;
+      --repeat: #7c3aed;
+      --repeat-bg: #f5f3ff;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      --radius: 14px;
+    }
+
+    body.dark {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --border: #334155;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --primary-light: #1e3a8a;
+      --success: #22c55e;
+      --success-bg: #052e16;
+      --danger: #f87171;
+      --danger-bg: #450a0a;
+      --warn: #fbbf24;
+      --warn-bg: #451a03;
+      --repeat: #a78bfa;
+      --repeat-bg: #2e1065;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Kannada", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      padding: env(safe-area-inset-top, 14px) 14px env(safe-area-inset-bottom, 20px);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .title-group h1 {
+      font-size: clamp(1.1rem, 2.5vw, 1.38rem);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .title-group p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .theme-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .add-q-btn {
+      background: var(--primary-light);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .switcher-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .switcher-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .segmented-box {
+      display: flex;
+      gap: 6px;
+      background: var(--bg);
+      padding: 4px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+    }
+
+    .seg-btn {
+      flex: 1;
+      padding: 9px 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .seg-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .config-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .slider-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .slider-val {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .slider-ticks {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .status-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .subject-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .repeat-badge {
+      background: var(--repeat-bg);
+      color: var(--repeat);
+      border: 1.5px solid var(--repeat);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .timer-pill {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border: 1px solid var(--warn);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 7px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .paused-blur {
+      filter: blur(8px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .pause-banner {
+      display: none;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn);
+      color: var(--text);
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    .question-text {
+      font-size: clamp(1rem, 2.2vw, 1.12rem);
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      white-space: pre-line;
+    }
+
+    .hint-box {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 11px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.96rem;
+      line-height: 1.48;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .option-btn:disabled {
+      cursor: default;
+    }
+
+    .opt-letter {
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+    .option-btn.correct .opt-letter {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+    .option-btn.wrong .opt-letter {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    .explanation-panel {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .explanation-panel h3 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .exp-item {
+      padding: 10px 12px;
+      border-radius: 9px;
+      font-size: 0.88rem;
+      line-height: 1.48;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .exp-item.is-right {
+      border-color: var(--success);
+      background: var(--success-bg);
+    }
+
+    .exp-item.is-chosen-wrong {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .left-controls, .nav-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-success {
+      background: var(--success);
+      border-color: var(--success);
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #ffffff;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 100;
+      padding: 16px;
+      overflow-y: auto;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .modal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 640px;
+      padding: 20px;
+      margin: 20px auto;
+      box-shadow: var(--shadow);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field-group {
+      margin-bottom: 10px;
+    }
+
+    .field-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--muted);
+    }
+
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .opt-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .opt-entry {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .summary-screen {
+      display: none;
+    }
+
+    .summary-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .score-circle {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      border: 4px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 12px auto 14px;
+    }
+
+    .score-circle span {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .score-circle small {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 640px) {
+      .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .stat-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .stat-box span {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .subject-breakdown {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .subject-breakdown h3 {
+      font-size: 0.94rem;
+      margin-bottom: 10px;
+    }
+
+    .sub-bar-row {
+      margin-bottom: 10px;
+    }
+
+    .sub-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .export-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .review-list {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .review-card {
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 14px;
+      background: var(--bg);
+      font-size: 0.9rem;
+    }
+
+    .review-card p {
+      margin-bottom: 6px;
+      line-height: 1.45;
+    }
+
+    .tag-pass { color: var(--success); font-weight: 700; }
+    .tag-fail { color: var(--danger); font-weight: 700; }
+
+    @media print {
+      header, .filters, .export-bar, .theme-btn, .add-q-btn, .modal-backdrop { display: none !important; }
+      body { background: #fff; color: #000; padding: 0; }
+      .card { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="top-bar">
+        <div class="title-group">
+          <h1>CBSE & Karnataka Board (KSEAB) Quiz</h1>
+          <p id="boardSubtitle">Class 7 • CBSE (NCERT) Curriculum • Detailed Explanations</p>
+        </div>
+        <div class="header-actions">
+          <button class="add-q-btn" onclick="openAddModal()">➕ Add Questions (<span id="customCountBadge">0</span>)</button>
+          <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+        </div>
+      </div>
+
+      <div class="switcher-grid">
+        <div class="segmented-box">
+          <button class="seg-btn active" id="btnCBSE" onclick="switchBoard('cbse')">CBSE (NCERT)</button>
+          <button class="seg-btn" id="btnKarnataka" onclick="switchBoard('karnataka')">Karnataka Board (KSEAB)</button>
+        </div>
+        <div class="segmented-box">
+          <button class="seg-btn active" id="cls7" onclick="switchClass(7)">Class 7</button>
+          <button class="seg-btn" id="cls8" onclick="switchClass(8)">Class 8</button>
+          <button class="seg-btn" id="cls9" onclick="switchClass(9)">Class 9</button>
+          <button class="seg-btn" id="cls10" onclick="switchClass(10)">Class 10</button>
+        </div>
+      </div>
+
+      <div class="config-grid">
+        <div class="slider-card">
+          <div class="slider-header">
+            <span>📝 Question Count</span>
+            <span class="slider-val" id="qCountLabel">10 Questions</span>
+          </div>
+          <input type="range" id="qCountSlider" min="0" max="4" step="1" value="0" oninput="updateQuestionCount(this.value)" />
+          <div class="slider-ticks">
+            <span>10</span><span>20</span><span>40</span><span>80</span><span>100</span>
+          </div>
+        </div>
+
+        <div class="slider-card">
+          <div class="slider-header">
+            <span>⏱️ Session Timer (0 = No Limit)</span>
+            <span class="slider-val" id="timerConfigLabel">0 mins (Off)</span>
+          </div>
+          <input type="range" id="timerSlider" min="0" max="60" step="5" value="0" oninput="updateTimerConfig(this.value)" />
+          <div class="slider-ticks">
+            <span>0m</span><span>15m</span><span>30m</span><span>45m</span><span>60m</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="filters" id="subjectFilters"></div>
+
+    <main class="card" id="quizCard">
+      <div class="status-strip">
+        <span id="qCounter">Question 1 of 10</span>
+        <div class="badge-group">
+          <span class="repeat-badge" id="repeatBadge">🔁 Repeated Question</span>
+          <span class="subject-badge" id="qSubject">Mathematics</span>
+          <span class="timer-pill" id="liveTimerPill">⏱️ Elapsed: 00:00</span>
+        </div>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="pause-banner" id="pauseBanner">
+        ⏸️ Quiz Paused — Question hidden while timer is paused.
+        <div style="margin-top:8px;">
+          <button class="btn btn-primary" onclick="togglePause()">▶️ Resume Quiz</button>
+        </div>
+      </div>
+
+      <div id="questionBody">
+        <div class="question-text" id="questionText"></div>
+        <div class="hint-box" id="hintBox"></div>
+        <div class="options-list" id="optionsList"></div>
+
+        <div class="explanation-panel" id="explanationPanel">
+          <h3>Answer Breakdown & Explanations</h3>
+          <div id="explanationList"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="left-controls">
+          <button class="btn" id="hintBtn" onclick="toggleHint()">💡 Hint</button>
+          <button class="btn" id="pauseBtn" onclick="togglePause()">⏸️ Pause</button>
+        </div>
+        <div class="nav-group">
+          <button class="btn" id="prevBtn" onclick="prevQuestion()">← Prev</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+        </div>
+      </div>
+    </main>
+
+    <section class="card summary-screen" id="summaryScreen">
+      <div class="summary-header">
+        <h2>Quiz Completed!</h2>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-top: 4px;" id="summaryBoardLabel"></p>
+        <div class="score-circle">
+          <span id="finalScore">0/10</span>
+          <small id="finalPercent">0%</small>
+        </div>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="stat-box">
+          <strong id="statCorrect">0</strong>
+          <span>Correct Answers</span>
+        </div>
+        <div class="stat-box">
+          <strong id="statWrong">0</strong>
+          <span>Wrong / Unanswered</span>
+        </div>
+        <div class="stat-box">
+          <strong id="statTime">00:00</strong>
+          <span>Total Time Taken</span>
+        </div>
+        <div class="stat-box">
+          <strong id="statAvgSpeed">0s</strong>
+          <span>Avg Time / Question</span>
+        </div>
+      </div>
+
+      <div class="subject-breakdown">
+        <h3>📊 Session Analytics — Subject Accuracy</h3>
+        <div id="subjectAnalyticsBars"></div>
+      </div>
+
+      <div class="export-bar">
+        <button class="btn btn-primary" onclick="downloadPDF()">📄 Download PDF Report</button>
+        <button class="btn btn-success" onclick="downloadWord()">📝 Download Word (.doc)</button>
+        <button class="btn" onclick="restartQuiz()">🔄 Restart Quiz</button>
+      </div>
+
+      <div class="review-list" id="reviewList"></div>
+    </section>
+  </div>
+
+  <!-- Add More Questions Modal -->
+  <div class="modal-backdrop" id="addQuestionModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>➕ Add New Question to Quiz Bank</h3>
+        <button class="btn" onclick="closeAddModal()">✕ Close</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="field-group">
+          <label>Board</label>
+          <select id="newBoard">
+            <option value="both">Both (CBSE & KSEAB)</option>
+            <option value="cbse">CBSE (NCERT) Only</option>
+            <option value="karnataka">Karnataka (KSEAB) Only</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Class Level</label>
+          <select id="newClass">
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Subject</label>
+          <select id="newSubject">
+            <option value="Mathematics">Mathematics</option>
+            <option value="Science">Science</option>
+            <option value="Social Science">Social Science</option>
+            <option value="English">English</option>
+            <option value="ಕನ್ನಡ (Kannada)">ಕನ್ನಡ (Kannada)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Question Text (Supports English & ಕನ್ನಡ)</label>
+        <textarea id="newQuestionText" rows="2" placeholder="Enter your question here..."></textarea>
+      </div>
+
+      <div class="field-group">
+        <label>Hint</label>
+        <input type="text" id="newHintText" placeholder="Enter a helpful clue for students..." />
+      </div>
+
+      <div class="field-group">
+        <label>Options & Explanations (Select the Correct Option below)</label>
+        <div class="opt-entry">
+          <input type="text" id="opt0Text" placeholder="Option A text" />
+          <input type="text" id="opt0Exp" placeholder="Option A explanation" />
+        </div>
+        <div class="opt-entry">
+          <input type="text" id="opt1Text" placeholder="Option B text" />
+          <input type="text" id="opt1Exp" placeholder="Option B explanation" />
+        </div>
+        <div class="opt-entry">
+          <input type="text" id="opt2Text" placeholder="Option C text" />
+          <input type="text" id="opt2Exp" placeholder="Option C explanation" />
+        </div>
+        <div class="opt-entry">
+          <input type="text" id="opt3Text" placeholder="Option D text" />
+          <input type="text" id="opt3Exp" placeholder="Option D explanation" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Correct Answer</label>
+        <select id="newCorrectIdx">
+          <option value="0">Option A</option>
+          <option value="1">Option B</option>
+          <option value="2">Option C</option>
+          <option value="3">Option D</option>
+        </select>
+      </div>
+
+      <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:space-between; margin-top:14px;">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="saveNewQuestion()">💾 Save Question</button>
+          <button class="btn" onclick="exportCustomJSON()">📤 Export Custom JSON</button>
+        </div>
+        <button class="btn btn-danger" onclick="clearCustomQuestions()">🗑️ Clear Custom</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const QUESTION_COUNTS = [10, 20, 40, 80, 100];
+    const STORAGE_KEY = "cbse_kseab_custom_questions_v1";
+
+    const BUILTIN_BANK = [
+      // CLASS 7
+      {
+        board: "both", classLevel: 7, subject: "Mathematics",
+        question: "If the perimeter of a rectangle is 40 cm and its length is 4 cm more than its breadth, what is the area of the rectangle?",
+        hint: "Use Perimeter = 2 × (Length + Breadth) to find breadth first, then multiply Length × Breadth.",
+        answer: 1,
+        options: [
+          { text: "84 cm²", exp: "Incorrect. Dimensions 14 cm and 6 cm have a difference of 8 cm, not 4 cm." },
+          { text: "96 cm²", exp: "Correct! 2(b + b + 4) = 40 ⇒ b = 8 cm, length = 12 cm. Area = 12 × 8 = 96 cm²." },
+          { text: "100 cm²", exp: "Incorrect. 100 cm² is the area of a square with side 10 cm." },
+          { text: "64 cm²", exp: "Incorrect. 64 cm² is b² (8 × 8), ignoring the extra 4 cm in length." }
+        ]
+      },
+      {
+        board: "both", classLevel: 7, subject: "Mathematics",
+        question: "Evaluate the exponential expression: (3⁵ × 10⁵ × 25) ÷ (5⁷ × 6⁵).",
+        hint: "Factorize composite bases: 10 = 2 × 5, 25 = 5², and 6 = 2 × 3.",
+        answer: 0,
+        options: [
+          { text: "1", exp: "Correct! (3⁵ × 2⁵ × 5⁵ × 5²) ÷ (5⁷ × 2⁵ × 3⁵) = (2⁵ × 3⁵ × 5⁷) ÷ (2⁵ × 3⁵ × 5⁷) = 1." },
+          { text: "5", exp: "Incorrect. 5⁵ × 5² = 5⁷ cancels completely with 5⁷ in the denominator." },
+          { text: "25", exp: "Incorrect. 25 cancels out when powers of 5 are simplified." },
+          { text: "0", exp: "Incorrect. Dividing equal non-zero terms always equals 1." }
+        ]
+      },
+      {
+        board: "both", classLevel: 7, subject: "Science",
+        question: "During photosynthesis, which gas is released as a byproduct, and through which leaf structures does it primarily exit?",
+        hint: "Think of the microscopic pores on the lower epidermis of leaves.",
+        answer: 0,
+        options: [
+          { text: "Oxygen; stomata", exp: "Correct! Oxygen is released from splitting water molecules and exits via stomata." },
+          { text: "Carbon dioxide; lenticels", exp: "Incorrect. Carbon dioxide is absorbed during photosynthesis, not released." },
+          { text: "Nitrogen; guard cells", exp: "Incorrect. Guard cells regulate pore opening; nitrogen is not released." },
+          { text: "Oxygen; xylem", exp: "Incorrect. Xylem conducts water and minerals, not gases." }
+        ]
+      },
+      {
+        board: "both", classLevel: 7, subject: "Social Science",
+        question: "Which layer of the Earth's atmosphere contains the ozone layer that shields life from ultraviolet (UV) radiation?",
+        hint: "It lies directly above the troposphere.",
+        answer: 1,
+        options: [
+          { text: "Troposphere", exp: "Incorrect. Weather events occur in the troposphere." },
+          { text: "Stratosphere", exp: "Correct! The stratosphere (10–50 km altitude) houses the protective ozone layer." },
+          { text: "Mesosphere", exp: "Incorrect. Meteorites burn up in the mesosphere." },
+          { text: "Thermosphere", exp: "Incorrect. The thermosphere contains the ionosphere for radio waves." }
+        ]
+      },
+      {
+        board: "both", classLevel: 7, subject: "English",
+        question: "Convert into passive voice: \"The school committee will announce the annual sports results tomorrow.\"",
+        hint: "Future simple passive uses 'will be + past participle'.",
+        answer: 2,
+        options: [
+          { text: "The annual sports results are announced by the school committee tomorrow.", exp: "Incorrect. Changes tense to simple present." },
+          { text: "The annual sports results will announce by the school committee tomorrow.", exp: "Incorrect. Missing 'be' and past participle." },
+          { text: "The annual sports results will be announced by the school committee tomorrow.", exp: "Correct! 'will announce' becomes 'will be announced'." },
+          { text: "The annual sports results would have been announced tomorrow.", exp: "Incorrect. Alters the modal verb unnecessarily." }
+        ]
+      },
+      {
+        board: "both", classLevel: 7, subject: "ಕನ್ನಡ (Kannada)",
+        question: "'ವಿದ್ಯಾರ್ಥಿ' ಎಂಬ ಪದವನ್ನು ಬಿಡಿಸಿ ಬರೆದಾಗ ಸರಿಯಾದ ರೂಪ ಯಾವುದು?",
+        hint: "ಸವರ್ಣದೀರ್ಘ ಸಂಧಿಯ ನಿಯಮವನ್ನು ಗಮನಿಸಿ (ವಿದ್ಯಾ + ಅರ್ಥಿ).",
+        answer: 0,
+        options: [
+          { text: "ವಿದ್ಯಾ + ಅರ್ಥಿ", exp: "ಸರಿ! 'ಆ + ಅ = ಆ' ಆಗುವುದರಿಂದ ಇದು ಸವರ್ಣದೀರ್ಘ ಸಂಧಿಯಾಗಿದೆ." },
+          { text: "ವಿದ್ಯ + ಆರ್ಥಿ", exp: "ತಪ್ಪು. ಸರಿಯಾದ ಪೂರ್ವಪದ 'ವಿದ್ಯಾ' ಮತ್ತು ಉತ್ತರಪದ 'ಅರ್ಥಿ'." },
+          { text: "ವಿದ್ಯೆ + ಅರ್ಥಿ", exp: "ತಪ್ಪು. 'ಎ' ಕಾರಕ್ಕೆ 'ಅ' ಕಾರ ಸೇರಿದರೆ 'ವಿದ್ಯಾರ್ಥಿ' ಆಗುವುದಿಲ್ಲ." },
+          { text: "ವಿದ್ಯಾ + ಆರ್ಥಿ", exp: "ತಪ್ಪು. ಉತ್ತರಪದ 'ಅರ್ಥಿ' (ಬಯಸುವವನು) ಆಗಿರಬೇಕು." }
+        ]
+      },
+
+      // CLASS 8
+      {
+        board: "both", classLevel: 8, subject: "Mathematics",
+        question: "If 3x + 5 = 2x + 12, what is the value of x² − 10?",
+        hint: "Solve the linear equation for x first, then substitute into x² − 10.",
+        answer: 2,
+        options: [
+          { text: "29", exp: "Incorrect. 29 corresponds to x = 6.24, not x = 7." },
+          { text: "49", exp: "Incorrect. 49 is x², forgetting to subtract 10." },
+          { text: "39", exp: "Correct! 3x − 2x = 12 − 5 ⇒ x = 7. Therefore, x² − 10 = 49 − 10 = 39." },
+          { text: "4", exp: "Incorrect. Do not confuse 2x with x²." }
+        ]
+      },
+      {
+        board: "both", classLevel: 8, subject: "Mathematics",
+        question: "Find the compound interest on ₹10,000 for 2 years at 10% per annum compounded annually.",
+        hint: "Amount A = P(1 + R/100)ⁿ, then CI = A − P.",
+        answer: 1,
+        options: [
+          { text: "₹2,000", exp: "Incorrect. ₹2,000 is the Simple Interest, not Compound Interest." },
+          { text: "₹2,100", exp: "Correct! A = 10000 × (1.1)² = ₹12,100. CI = 12,100 − 10,000 = ₹2,100." },
+          { text: "₹12,100", exp: "Incorrect. ₹12,100 is the total Amount, not the interest alone." },
+          { text: "₹1,100", exp: "Incorrect. ₹1,100 is only the second year's interest." }
+        ]
+      },
+      {
+        board: "both", classLevel: 8, subject: "Science",
+        question: "Which microorganism is responsible for fixing atmospheric nitrogen in the root nodules of leguminous plants?",
+        hint: "This bacterium lives symbiotically inside pea and bean roots.",
+        answer: 0,
+        options: [
+          { text: "Rhizobium", exp: "Correct! Rhizobium converts atmospheric nitrogen into soluble nitrates for plants." },
+          { text: "Lactobacillus", exp: "Incorrect. Lactobacillus converts milk into curd." },
+          { text: "Plasmodium", exp: "Incorrect. Plasmodium is a protozoan that causes malaria." },
+          { text: "Penicillium", exp: "Incorrect. Penicillium is a fungus used to produce antibiotics." }
+        ]
+      },
+      {
+        board: "both", classLevel: 8, subject: "Social Science",
+        question: "Who introduced the Permanent Settlement of Bengal in 1793?",
+        hint: "He served as Governor-General of Bengal in the late 18th century.",
+        answer: 3,
+        options: [
+          { text: "Lord Dalhousie", exp: "Incorrect. Dalhousie is known for the Doctrine of Lapse." },
+          { text: "Warren Hastings", exp: "Incorrect. Hastings introduced the quinquennial/annual revenue farming system earlier." },
+          { text: "Thomas Munro", exp: "Incorrect. Munro introduced the Ryotwari system in South India." },
+          { text: "Lord Cornwallis", exp: "Correct! Lord Cornwallis introduced the Permanent Settlement in 1793." }
+        ]
+      },
+      {
+        board: "both", classLevel: 8, subject: "ಕನ್ನಡ (Kannada)",
+        question: "'ಮರದಿಂದ ಎಲೆ ಉದುರಿತು' — ಈ ವಾಕ್ಯದಲ್ಲಿರುವ 'ಮರದಿಂದ' ಎಂಬ ಪದವು ಯಾವ ವಿಭಕ್ತಿ ಪ್ರತ್ಯಯವನ್ನು ಹೊಂದಿದೆ?",
+        hint: "ಅತ್ತಣಿಂದ (ದೂರವಾಗುವ ಅರ್ಥ) ಸೂಚಿಸುವ ವಿಭಕ್ತಿ ಯಾವುದು?",
+        answer: 2,
+        options: [
+          { text: "ತೃತೀಯಾ ವಿಭಕ್ತಿ (ಇಂದ)", exp: "ತಪ್ಪು. ಸಾಧನಾರ್ಥದಲ್ಲಿ 'ಇಂದ' ಬಂದರೆ ತೃತೀಯಾ; ಇಲ್ಲಿ ಅಗಲುವಿಕೆ (ಅಪಾದಾನ) ಇದೆ." },
+          { text: "ಚತುರ್ಥಿ ವಿಭಕ್ತಿ (ಗೆ, ಇಗೆ)", exp: "ತಪ್ಪು. ಚತುರ್ಥಿ ಪ್ರತ್ಯಯ 'ಗೆ/ಇಗೆ/ಕ್ಕೆ'." },
+          { text: "ಪಂಚಮಿ ವಿಭಕ್ತಿ (ದೆಸೆಯಿಂದ / ಅತ್ತಣಿಂದ)", exp: "ಸರಿ! ಒಂದು ವಸ್ತುವಿನಿಂದ ಇನ್ನೊಂದು ವಸ್ತು ಬೇರ್ಪಡುವುದನ್ನು ಪಂಚಮಿ ವಿಭಕ್ತಿ ಸೂಚಿಸುತ್ತದೆ." },
+          { text: "ಸಪ್ತಮಿ ವಿಭಕ್ತಿ (ಅಲ್ಲಿ)", exp: "ತಪ್ಪು. ಸ್ಥಳವನ್ನು ಸೂಚಿಸುವ ಪ್ರತ್ಯಯ 'ಅಲ್ಲಿ'." }
+        ]
+      },
+
+      // CLASS 9
+      {
+        board: "both", classLevel: 9, subject: "Mathematics",
+        question: "If a + b + c = 9 and ab + bc + ca = 26, find the value of a² + b² + c².",
+        hint: "Use the algebraic identity: (a + b + c)² = a² + b² + c² + 2(ab + bc + ca).",
+        answer: 1,
+        options: [
+          { text: "35", exp: "Incorrect. You subtracted 26 once instead of 2 × 26 = 52." },
+          { text: "29", exp: "Correct! 9² = a² + b² + c² + 2(26) ⇒ 81 − 52 = 29." },
+          { text: "55", exp: "Incorrect. 81 − 26 = 55 forgets the factor of 2 in 2(ab + bc + ca)." },
+          { text: "133", exp: "Incorrect. You added 52 instead of subtracting it from 81." }
+        ]
+      },
+      {
+        board: "both", classLevel: 9, subject: "Mathematics",
+        question: "Find the area of a triangle whose sides are 13 cm, 14 cm, and 15 cm using Heron's Formula.",
+        hint: "Semi-perimeter s = (13 + 14 + 15)/2 = 21 cm; Area = √[s(s−a)(s−b)(s−c)].",
+        answer: 0,
+        options: [
+          { text: "84 cm²", exp: "Correct! s = 21. Area = √(21 × 8 × 7 × 6) = √(7056) = 84 cm²." },
+          { text: "42 cm²", exp: "Incorrect. 42 cm is the perimeter, not the area." },
+          { text: "91 cm²", exp: "Incorrect. 91 is 13 × 7, not the square root of 7056." },
+          { text: "168 cm²", exp: "Incorrect. 168 is double the area." }
+        ]
+      },
+      {
+        board: "both", classLevel: 9, subject: "Science",
+        question: "Which cell organelle is known as the 'Powerhouse of the Cell' because it generates ATP?",
+        hint: "It has a double membrane with deeply folded inner cristae.",
+        answer: 2,
+        options: [
+          { text: "Lysosome", exp: "Incorrect. Lysosomes are digestive 'suicide bags' of the cell." },
+          { text: "Ribosome", exp: "Incorrect. Ribosomes are sites of protein synthesis." },
+          { text: "Mitochondria", exp: "Correct! Mitochondria release energy in the form of ATP during cellular respiration." },
+          { text: "Golgi apparatus", exp: "Incorrect. Golgi bodies package and dispatch proteins and lipids." }
+        ]
+      },
+      {
+        board: "both", classLevel: 9, subject: "Social Science",
+        question: "In which year did the French Revolution begin with the storming of the Bastille?",
+        hint: "July 14 of the penultimate decade of the 18th century.",
+        answer: 1,
+        options: [
+          { text: "1776", exp: "Incorrect. 1776 was the American Declaration of Independence." },
+          { text: "1789", exp: "Correct! On 14 July 1789, citizens of Paris stormed the Bastille fortress-prison." },
+          { text: "1799", exp: "Incorrect. 1799 marked Napoleon Bonaparte's rise as First Consul." },
+          { text: "1815", exp: "Incorrect. 1815 was the Battle of Waterloo." }
+        ]
+      },
+      {
+        board: "both", classLevel: 9, subject: "ಕನ್ನಡ (Kannada)",
+        question: "ಕನ್ನಡದ ಆದಿಕವಿ ಪಂಪನು ರಚಿಸಿದ ಎರಡು ಪ್ರಮುಖ ಕೃತಿಗಳು ಯಾವುವು?",
+        hint: "ಒಂದು ಜೈನ ಪುರಾಣ ಮತ್ತು ಇನ್ನೊಂದು ಮಹಾಭಾರತ ಕಥಾನಕ.",
+        answer: 0,
+        options: [
+          { text: "ಆದಿಪುರಾಣ ಮತ್ತು ವಿಕ್ರಮಾರ್ಜುನ ವಿಜಯ", exp: "ಸರಿ! ಪಂಪನು 'ಆದಿಪುರಾಣ' (ಆಗಮಿಕ) ಮತ್ತು 'ವಿಕ್ರಮಾರ್ಜುನ ವಿಜಯ' (ಲೌಕಿಕ) ಕೃತಿಗಳನ್ನು ರಚಿಸಿದನು." },
+          { text: "ಗದಾಯುದ್ಧ ಮತ್ತು ಅಜಿತಪುರಾಣ", exp: "ತಪ್ಪು. ಇವು ಕವಿ ರನ್ನನ ಕೃತಿಗಳು." },
+          { text: "ಶಾಂತಿಪುರಾಣ ಮತ್ತು ಭುವನೈಕ ರಾಮಾಭ್ಯುದಯ", exp: "ತಪ್ಪು. ಇವು ಕವಿ ಪೊನ್ನನ ಕೃತಿಗಳು." },
+          { text: "ಜೈಮಿನಿ ಭಾರತ ಮತ್ತು ಹರಿಶ್ಚಂದ್ರ ಕಾವ್ಯ", exp: "ತಪ್ಪು. ಇವು ಕ್ರಮವಾಗಿ ಲಕ್ಷ್ಮೀಶ ಮತ್ತು ರಾಘವಾಂಕನ ಕೃತಿಗಳು." }
+        ]
+      },
+
+      // CLASS 10
+      {
+        board: "both", classLevel: 10, subject: "Mathematics",
+        question: "If α and β are the zeroes of the quadratic polynomial p(x) = x² − 5x + 6, find the value of α² + β².",
+        hint: "Use α + β = −b/a = 5 and αβ = c/a = 6, then α² + β² = (α + β)² − 2αβ.",
+        answer: 2,
+        options: [
+          { text: "25", exp: "Incorrect. 25 is (α + β)², forgetting to subtract 2αβ." },
+          { text: "19", exp: "Incorrect. You subtracted αβ (6) once instead of 2αβ (12)." },
+          { text: "13", exp: "Correct! α + β = 5, αβ = 6. α² + β² = 5² − 2(6) = 25 − 12 = 13." },
+          { text: "37", exp: "Incorrect. You added 12 instead of subtracting." }
+        ]
+      },
+      {
+        board: "both", classLevel: 10, subject: "Mathematics",
+        question: "Evaluate: sin 60° cos 30° + sin 30° cos 60°.",
+        hint: "Substitute sin 60° = √3/2, cos 30° = √3/2, sin 30° = 1/2, cos 60° = 1/2.",
+        answer: 0,
+        options: [
+          { text: "1", exp: "Correct! (√3/2)(√3/2) + (1/2)(1/2) = 3/4 + 1/4 = 1 (also sin(60°+30°) = sin 90° = 1)." },
+          { text: "1/2", exp: "Incorrect. 3/4 + 1/4 equals 4/4 = 1, not 1/2." },
+          { text: "√3/2", exp: "Incorrect. That is the value of sin 60° alone." },
+          { text: "0", exp: "Incorrect. Both terms are positive." }
+        ]
+      },
+      {
+        board: "both", classLevel: 10, subject: "Science",
+        question: "An electric bulb is rated 220 V and 100 W. When operated on 110 V, what will be the power consumed?",
+        hint: "First calculate filament resistance R = V²/P, then find P_new = V_new² / R.",
+        answer: 3,
+        options: [
+          { text: "100 W", exp: "Incorrect. Power changes with the square of voltage." },
+          { text: "75 W", exp: "Incorrect. Halving voltage reduces power to one-fourth, not three-fourths." },
+          { text: "50 W", exp: "Incorrect. Power is proportional to V², not directly proportional to V." },
+          { text: "25 W", exp: "Correct! R = 220²/100 = 484 Ω. At 110 V, P = 110² / 484 = 12100 / 484 = 25 W." }
+        ]
+      },
+      {
+        board: "both", classLevel: 10, subject: "Social Science",
+        question: "Who founded the 'Satyashodhak Samaj' in 1873 to campaign against caste discrimination and promote education?",
+        hint: "He authored 'Gulamgiri' in Maharashtra.",
+        answer: 1,
+        options: [
+          { text: "Raja Ram Mohan Roy", exp: "Incorrect. He founded the Brahmo Samaj in 1828." },
+          { text: "Jyotiba Phule", exp: "Correct! Jyotirao Phule founded Satyashodhak Samaj in Pune in 1873." },
+          { text: "Swami Dayanand Saraswati", exp: "Incorrect. He founded the Arya Samaj in 1875." },
+          { text: "Sir Syed Ahmad Khan", exp: "Incorrect. He founded the Aligarh Movement." }
+        ]
+      },
+      {
+        board: "both", classLevel: 10, subject: "ಕನ್ನಡ (Kannada)",
+        question: "ರಾಷ್ಟ್ರಕವಿ ಕುವೆಂಪು ವಿರಚಿತ 'ಶ್ರೀ ರಾಮಾಯಣ ದರ್ಶನಂ' ಕೃತಿಗೆ ದೊರೆತ ಅತ್ಯುನ್ನತ ರಾಷ್ಟ್ರೀಯ ಸಾಹಿತ್ಯ ಪ್ರಶಸ್ತಿ ಯಾವುದು?",
+        hint: "ಕನ್ನಡಕ್ಕೆ ಮೊದಲ ಬಾರಿಗೆ ಈ ಪ್ರಶಸ್ತಿ 1967ರಲ್ಲಿ ಲಭಿಸಿತು.",
+        answer: 0,
+        options: [
+          { text: "ಜ್ಞಾನಪೀಠ ಪ್ರಶಸ್ತಿ", exp: "ಸರಿ! 1967ರಲ್ಲಿ ಕುವೆಂಪು ಅವರ 'ಶ್ರೀ ರಾಮಾಯಣ ದರ್ಶನಂ' ಕೃತಿಗೆ ಕನ್ನಡದ ಮೊದಲ ಜ್ಞಾನಪೀಠ ಪ್ರಶಸ್ತಿ ದೊರೆಯಿತು." },
+          { text: "ಪಂಪ ಪ್ರಶಸ್ತಿ", exp: "ತಪ್ಪು. ಪಂಪ ಪ್ರಶಸ್ತಿಯು ಕರ್ನಾಟಕ ಸರ್ಕಾರ ನೀಡುವ ರಾಜ್ಯಮಟ್ಟದ ಪ್ರಶಸ್ತಿ." },
+          { text: "ನೃಪತುಂಗ ಪ್ರಶಸ್ತಿ", exp: "ತಪ್ಪು. ಇದು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಿಷತ್ತು ನೀಡುವ ಪ್ರಶಸ್ತಿ." },
+          { text: "ಸರಸ್ವತಿ ಸಮ್ಮಾನ್", exp: "ತಪ್ಪು. ಕನ್ನಡಕ್ಕೆ ಮೊದಲ ಸರಸ್ವತಿ ಸಮ್ಮಾನ್ ಎಸ್.ಎಲ್. ಭೈರಪ್ಪನವರಿಗೆ ಲಭಿಸಿತು." }
+        ]
+      }
+    ];
+
+    function loadCustomQuestions() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function getFullBank() {
+      const custom = loadCustomQuestions();
+      document.getElementById("customCountBadge").textContent = custom.length;
+      return [...BUILTIN_BANK, ...custom];
+    }
+
+    let currentBoard = "cbse";
+    let currentClass = 7;
+    let selectedSubject = "All";
+    let targetQuestionCount = 10;
+    let timerLimitMinutes = 0;
+
+    let sessionQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = [];
+    let isPaused = false;
+
+    let elapsedSeconds = 0;
+    let timerInterval = null;
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      document.getElementById("themeToggle").textContent = isDark ? "☀️ Light" : "🌙 Dark";
+    }
+
+    function updateHeaderSubtitle() {
+      const boardText = currentBoard === "cbse" ? "CBSE (NCERT)" : "Karnataka State Board (KSEAB)";
+      document.getElementById("boardSubtitle").textContent =
+        `Class ${currentClass} • ${boardText} Curriculum • Detailed Explanations`;
+    }
+
+    function switchBoard(board) {
+      currentBoard = board;
+      selectedSubject = "All";
+      document.getElementById("btnCBSE").classList.toggle("active", board === "cbse");
+      document.getElementById("btnKarnataka").classList.toggle("active", board === "karnataka");
+      updateHeaderSubtitle();
+      initQuiz();
+    }
+
+    function switchClass(cls) {
+      currentClass = cls;
+      selectedSubject = "All";
+      [7, 8, 9, 10].forEach(c => {
+        document.getElementById("cls" + c).classList.toggle("active", c === cls);
+      });
+      updateHeaderSubtitle();
+      initQuiz();
+    }
+
+    function updateQuestionCount(idx) {
+      targetQuestionCount = QUESTION_COUNTS[Number(idx)];
+      document.getElementById("qCountLabel").textContent = `${targetQuestionCount} Questions`;
+      initQuiz();
+    }
+
+    function updateTimerConfig(mins) {
+      timerLimitMinutes = Number(mins);
+      document.getElementById("timerConfigLabel").textContent =
+        timerLimitMinutes === 0 ? "0 mins (Off)" : `${timerLimitMinutes} mins`;
+      initQuiz();
+    }
+
+    function getClassBank() {
+      return getFullBank().filter(
+        q => q.classLevel === currentClass && (q.board === "both" || q.board === currentBoard)
+      );
+    }
+
+    function renderFilters() {
+      const classQs = getClassBank();
+      const subjects = ["All", "Mathematics", "Science", "Social Science", "English", "ಕನ್ನಡ (Kannada)"];
+      const availableSubjects = subjects.filter(
+        s => s === "All" || classQs.some(q => q.subject === s)
+      );
+
+      const container = document.getElementById("subjectFilters");
+      container.innerHTML = "";
+
+      availableSubjects.forEach(sub => {
+        const btn = document.createElement("button");
+        btn.className = "filter-pill" + (selectedSubject === sub ? " active" : "");
+        btn.textContent = sub;
+        btn.onclick = () => {
+          selectedSubject = sub;
+          initQuiz();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function buildSessionQuestions(pool) {
+      const result = [];
+      const seenTexts = new Set();
+
+      for (let i = 0; i < targetQuestionCount; i++) {
+        const source = pool[i % pool.length];
+        const isRepeated = seenTexts.has(source.question);
+        seenTexts.add(source.question);
+
+        result.push({
+          ...source,
+          isRepeated
+        });
+      }
+      return result;
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      elapsedSeconds = 0;
+      updateTimerDisplay();
+
+      timerInterval = setInterval(() => {
+        if (isPaused) return;
+        elapsedSeconds++;
+        updateTimerDisplay();
+
+        if (timerLimitMinutes > 0 && elapsedSeconds >= timerLimitMinutes * 60) {
+          clearInterval(timerInterval);
+          alert("⏰ Time's up! Submitting your quiz session now.");
+          showSummary();
+        }
+      }, 1000);
+    }
+
+    function formatTime(totalSec) {
+      const mins = Math.floor(totalSec / 60);
+      const secs = totalSec % 60;
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+    }
+
+    function updateTimerDisplay() {
+      const pill = document.getElementById("liveTimerPill");
+      if (timerLimitMinutes > 0) {
+        const remaining = Math.max(0, timerLimitMinutes * 60 - elapsedSeconds);
+        pill.textContent = `⏳ Left: ${formatTime(remaining)}`;
+      } else {
+        pill.textContent = `⏱️ Elapsed: ${formatTime(elapsedSeconds)}`;
+      }
+    }
+
+    function togglePause() {
+      isPaused = !isPaused;
+      document.getElementById("pauseBanner").style.display = isPaused ? "block" : "none";
+      document.getElementById("questionBody").classList.toggle("paused-blur", isPaused);
+      document.getElementById("pauseBtn").textContent = isPaused ? "▶️ Resume" : "⏸️ Pause";
+    }
+
+    function initQuiz() {
+      renderFilters();
+      const classQs = getClassBank();
+      const pool = selectedSubject === "All"
+        ? classQs
+        : classQs.filter(q => q.subject === selectedSubject);
+
+      sessionQuestions = buildSessionQuestions(pool.length ? pool : getFullBank());
+      currentIndex = 0;
+      userAnswers = new Array(sessionQuestions.length).fill(null);
+      isPaused = false;
+
+      document.getElementById("pauseBanner").style.display = "none";
+      document.getElementById("questionBody").classList.remove("paused-blur");
+      document.getElementById("pauseBtn").textContent = "⏸️ Pause";
+
+      document.getElementById("summaryScreen").style.display = "none";
+      document.getElementById("quizCard").style.display = "block";
+
+      startTimer();
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = sessionQuestions[currentIndex];
+      const total = sessionQuestions.length;
+
+      document.getElementById("qCounter").textContent = `Question ${currentIndex + 1} of ${total}`;
+      document.getElementById("qSubject").textContent = `Class ${q.classLevel} • ${q.subject}`;
+      document.getElementById("repeatBadge").style.display = q.isRepeated ? "inline-flex" : "none";
+      document.getElementById("progressFill").style.width = `${((currentIndex + 1) / total) * 100}%`;
+      document.getElementById("questionText").textContent = q.question;
+
+      const hintBox = document.getElementById("hintBox");
+      hintBox.style.display = "none";
+      hintBox.textContent = "💡 Hint: " + q.hint;
+
+      const optionsList = document.getElementById("optionsList");
+      optionsList.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+      const chosen = userAnswers[currentIndex];
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        if (chosen !== null) {
+          btn.disabled = true;
+          if (idx === q.answer) btn.classList.add("correct");
+          else if (idx === chosen) btn.classList.add("wrong");
+        }
+        btn.innerHTML = `<span class="opt-letter">${letters[idx]}</span><span>${opt.text}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsList.appendChild(btn);
+      });
+
+      const expPanel = document.getElementById("explanationPanel");
+      const expList = document.getElementById("explanationList");
+      if (chosen !== null) {
+        expPanel.style.display = "block";
+        expList.innerHTML = q.options
+          .map((opt, idx) => {
+            const isRight = idx === q.answer;
+            const isChosenWrong = idx === chosen && idx !== q.answer;
+            return `<div class="exp-item ${isRight ? "is-right" : ""} ${isChosenWrong ? "is-chosen-wrong" : ""}">
+              <strong>${letters[idx]}. ${opt.text}</strong><br/>${opt.exp}
+            </div>`;
+          })
+          .join("");
+      } else {
+        expPanel.style.display = "none";
+      }
+
+      document.getElementById("prevBtn").disabled = currentIndex === 0;
+      document.getElementById("nextBtn").textContent = currentIndex === total - 1 ? "Finish Quiz ✓" : "Next →";
+    }
+
+    function selectOption(idx) {
+      if (userAnswers[currentIndex] !== null || isPaused) return;
+      userAnswers[currentIndex] = idx;
+      renderQuestion();
+    }
+
+    function toggleHint() {
+      if (isPaused) return;
+      const box = document.getElementById("hintBox");
+      box.style.display = box.style.display === "none" ? "block" : "none";
+    }
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentIndex < sessionQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showSummary();
+      }
+    }
+
+    function showSummary() {
+      clearInterval(timerInterval);
+      document.getElementById("quizCard").style.display = "none";
+      const summary = document.getElementById("summaryScreen");
+      summary.style.display = "block";
+
+      let score = 0;
+      const subjectStats = {};
+
+      sessionQuestions.forEach((q, idx) => {
+        if (!subjectStats[q.subject]) subjectStats[q.subject] = { total: 0, correct: 0 };
+        subjectStats[q.subject].total++;
+
+        if (userAnswers[idx] === q.answer) {
+          score++;
+          subjectStats[q.subject].correct++;
+        }
+      });
+
+      const total = sessionQuestions.length;
+      const pct = Math.round((score / total) * 100);
+      const boardName = currentBoard === "cbse" ? "CBSE (NCERT)" : "Karnataka State Board (KSEAB)";
+
+      document.getElementById("summaryBoardLabel").textContent =
+        `Class ${currentClass} • ${boardName} • Filter: ${selectedSubject}`;
+      document.getElementById("finalScore").textContent = `${score}/${total}`;
+      document.getElementById("finalPercent").textContent = `${pct}%`;
+
+      document.getElementById("statCorrect").textContent = score;
+      document.getElementById("statWrong").textContent = total - score;
+      document.getElementById("statTime").textContent = formatTime(elapsedSeconds);
+      document.getElementById("statAvgSpeed").textContent = `${Math.round(elapsedSeconds / total)}s`;
+
+      const barsContainer = document.getElementById("subjectAnalyticsBars");
+      barsContainer.innerHTML = Object.entries(subjectStats)
+        .map(([sub, data]) => {
+          const subPct = Math.round((data.correct / data.total) * 100);
+          return `<div class="sub-bar-row">
+            <div class="sub-bar-label">
+              <span>${sub}</span>
+              <span>${data.correct}/${data.total} (${subPct}%)</span>
+            </div>
+            <div class="progress-track" style="margin-bottom:0;">
+              <div class="progress-fill" style="width:${subPct}%;"></div>
+            </div>
+          </div>`;
+        })
+        .join("");
+
+      const reviewList = document.getElementById("reviewList");
+      reviewList.innerHTML = sessionQuestions
+        .map((q, idx) => {
+          const chosen = userAnswers[idx];
+          const isCorrect = chosen === q.answer;
+          const userText = chosen !== null ? q.options[chosen].text : "Not answered";
+          const correctText = q.options[q.answer].text;
+          const repeatTag = q.isRepeated ? " 🔁 [Repeated]" : "";
+          return `<div class="review-card">
+            <p><strong>Q${idx + 1} (${q.subject})${repeatTag}:</strong> ${q.question}</p>
+            <p>Your Answer: <span class="${isCorrect ? "tag-pass" : "tag-fail"}">${userText}</span></p>
+            ${!isCorrect ? `<p>Correct Answer: <span class="tag-pass">${correctText}</span></p>` : ""}
+            <p style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">${q.options[q.answer].exp}</p>
+          </div>`;
+        })
+        .join("");
+    }
+
+    function openAddModal() {
+      document.getElementById("newClass").value = String(currentClass);
+      document.getElementById("addQuestionModal").style.display = "flex";
+    }
+
+    function closeAddModal() {
+      document.getElementById("addQuestionModal").style.display = "none";
+    }
+
+    function saveNewQuestion() {
+      const qText = document.getElementById("newQuestionText").value.trim();
+      const hintText = document.getElementById("newHintText").value.trim() || "Review the core concept carefully.";
+      const opts = [0, 1, 2, 3].map(i => ({
+        text: document.getElementById(`opt${i}Text`).value.trim(),
+        exp: document.getElementById(`opt${i}Exp`).value.trim() || "Review the explanation above."
+      }));
+
+      if (!qText || opts.some(o => !o.text)) {
+        alert("Please fill in the Question Text and all 4 Option texts.");
+        return;
+      }
+
+      const newEntry = {
+        board: document.getElementById("newBoard").value,
+        classLevel: Number(document.getElementById("newClass").value),
+        subject: document.getElementById("newSubject").value,
+        question: qText,
+        hint: hintText,
+        answer: Number(document.getElementById("newCorrectIdx").value),
+        options: opts
+      };
+
+      const existing = loadCustomQuestions();
+      existing.push(newEntry);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+
+      document.getElementById("newQuestionText").value = "";
+      document.getElementById("newHintText").value = "";
+      [0, 1, 2, 3].forEach(i => {
+        document.getElementById(`opt${i}Text`).value = "";
+        document.getElementById(`opt${i}Exp`).value = "";
+      });
+
+      closeAddModal();
+      initQuiz();
+      alert("✅ Question added! It is now active in your quiz bank.");
+    }
+
+    function exportCustomJSON() {
+      const custom = loadCustomQuestions();
+      if (!custom.length) {
+        alert("No custom questions added yet.");
+        return;
+      }
+      const blob = new Blob([JSON.stringify(custom, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "custom_quiz_questions.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearCustomQuestions() {
+      if (!confirm("Remove all custom questions saved in this browser?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      closeAddModal();
+      initQuiz();
+    }
+
+    function downloadPDF() {
+      window.print();
+    }
+
+    function downloadWord() {
+      const boardName = currentBoard === "cbse" ? "CBSE (NCERT)" : "Karnataka State Board (KSEAB)";
+      const scoreText = document.getElementById("finalScore").textContent;
+      const pctText = document.getElementById("finalPercent").textContent;
+      const timeText = document.getElementById("statTime").textContent;
+
+      let rowsHtml = sessionQuestions.map((q, idx) => {
+        const chosen = userAnswers[idx];
+        const userAns = chosen !== null ? q.options[chosen].text : "Not answered";
+        const rightAns = q.options[q.answer].text;
+        const status = chosen === q.answer ? "Correct" : "Incorrect";
+        const repeatTag = q.isRepeated ? " [Repeated]" : "";
+        return `
+          <div style="margin-bottom:14px; padding:10px; border:1px solid #ccc;">
+            <p><strong>Q${idx + 1} [${q.subject}]${repeatTag}:</strong> ${q.question}</p>
+            <p><strong>Your Answer:</strong> ${userAns} (${status})</p>
+            <p><strong>Correct Answer:</strong> ${rightAns}</p>
+            <p><strong>Explanation:</strong> ${q.options[q.answer].exp}</p>
+          </div>`;
+      }).join("");
+
+      const docContent = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office'
+              xmlns:w='urn:schemas-microsoft-com:office:word'
+              xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Quiz Result Report</title></head>
+        <body style="font-family: Arial, sans-serif;">
+          <h2>CBSE & Karnataka Board (KSEAB) — Quiz Performance Report</h2>
+          <p><strong>Class:</strong> Class ${currentClass} | <strong>Board:</strong> ${boardName}</p>
+          <p><strong>Score:</strong> ${scoreText} (${pctText}) | <strong>Total Time:</strong> ${timeText}</p>
+          <hr/>
+          ${rowsHtml}
+        </body>
+        </html>`;
+
+      const blob = new Blob(['\ufeff', docContent], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Class_${currentClass}_${currentBoard.toUpperCase()}_Quiz_Report.doc`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function restartQuiz() {
+      initQuiz();
+    }
+
+    initQuiz();
+  </script>
+</body>
+</html>
